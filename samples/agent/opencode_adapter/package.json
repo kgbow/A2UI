@@ -1,0 +1,24 @@
+{
+  "name": "@a2ui/opencode-adapter",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TypeScript A2A adapter service for OpenCode-backed A2UI demos",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@a2a-js/sdk": "^0.3.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.13.14",
+    "tsx": "^4.19.3",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
