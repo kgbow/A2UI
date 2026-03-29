@@ -37,3 +37,16 @@ uv run .
 5. Fill in passenger details.
 6. Review and confirm the booking.
 7. Receive a generated success surface.
+
+## Manual Verification Checklist
+
+1. Send: `Book me a high-speed train from Shanghai to Beijing tomorrow morning`
+2. Confirm the generated search form appears on a single surface
+3. Click `Search Trains`
+4. Confirm train cards are rendered with seat selection buttons
+5. Click one seat button
+6. Confirm the passenger form replaces the results content on the same surface
+7. Fill in passenger details and continue
+8. Confirm the booking review state appears
+9. Confirm the booking
+10. Confirm the booking success screen appears with a booking reference
