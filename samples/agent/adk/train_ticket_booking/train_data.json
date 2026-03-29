@@ -1,0 +1,47 @@
+[
+  {
+    "trainId": "G101",
+    "trainNumber": "G101",
+    "from": "Shanghai",
+    "to": "Beijing",
+    "departureTime": "08:00",
+    "arrivalTime": "12:38",
+    "duration": "4h 38m",
+    "date": "2026-03-30",
+    "trainType": "high-speed",
+    "seatOptions": [
+      { "seatType": "Second Class", "price": 553, "remaining": 12 },
+      { "seatType": "First Class", "price": 933, "remaining": 6 }
+    ]
+  },
+  {
+    "trainId": "G115",
+    "trainNumber": "G115",
+    "from": "Shanghai",
+    "to": "Beijing",
+    "departureTime": "09:12",
+    "arrivalTime": "13:58",
+    "duration": "4h 46m",
+    "date": "2026-03-30",
+    "trainType": "high-speed",
+    "seatOptions": [
+      { "seatType": "Second Class", "price": 568, "remaining": 9 },
+      { "seatType": "First Class", "price": 948, "remaining": 4 }
+    ]
+  },
+  {
+    "trainId": "D301",
+    "trainNumber": "D301",
+    "from": "Shanghai",
+    "to": "Beijing",
+    "departureTime": "14:20",
+    "arrivalTime": "21:50",
+    "duration": "7h 30m",
+    "date": "2026-03-30",
+    "trainType": "bullet",
+    "seatOptions": [
+      { "seatType": "Second Class", "price": 432, "remaining": 18 },
+      { "seatType": "First Class", "price": 712, "remaining": 5 }
+    ]
+  }
+]
