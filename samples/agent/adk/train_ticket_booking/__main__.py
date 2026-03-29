@@ -40,10 +40,16 @@ class MissingAPIConfigurationError(Exception):
 @click.option("--port", default=10012)
 def main(host, port):
   try:
-    if not os.getenv("OPENAI_API_KEY"):
-      raise MissingAPIConfigurationError("OPENAI_API_KEY environment variable not set.")
-    if not os.getenv("OPENAI_MODEL"):
-      raise MissingAPIConfigurationError("OPENAI_MODEL environment variable not set.")
+    mode = os.getenv("TRAIN_TICKET_MODE", "live").strip().lower()
+    if mode != "mock":
+      if not os.getenv("OPENAI_API_KEY"):
+        raise MissingAPIConfigurationError(
+            "OPENAI_API_KEY environment variable not set."
+        )
+      if not os.getenv("OPENAI_MODEL"):
+        raise MissingAPIConfigurationError(
+            "OPENAI_MODEL environment variable not set."
+        )
 
     base_url = f"http://{host}:{port}"
     agent = TrainTicketBookingAgent(base_url=base_url)

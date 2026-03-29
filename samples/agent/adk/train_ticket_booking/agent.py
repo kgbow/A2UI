@@ -16,6 +16,7 @@ import json
 import logging
 import os
 from collections.abc import AsyncIterable
+from pathlib import Path
 from typing import Any, Dict, Optional
 
 import jsonschema
@@ -47,6 +48,7 @@ from a2ui.core.schema.common_modifiers import remove_strict_validation
 from a2ui.a2a import get_a2ui_agent_extension, parse_response_to_parts
 
 logger = logging.getLogger(__name__)
+_MOCK_RESULTS_DIR = Path(__file__).parent / "gen_results"
 
 
 def _extract_final_response_text(parts: list[types.Part] | None) -> str | None:
@@ -88,6 +90,36 @@ def _parse_bool_env(value: str | None) -> bool | None:
   return None
 
 
+def _get_mock_step_for_query(query: str) -> int:
+  """Maps a query or executor-generated action string to a recorded mock step."""
+  normalized = query.strip()
+  if normalized.startswith("CONFIRM_BOOKING:"):
+    return 5
+  if normalized.startswith("CONTINUE_TO_REVIEW:"):
+    return 4
+  if normalized.startswith("SELECT_TRAIN_SEAT:"):
+    return 3
+  if normalized.startswith("SEARCH_TRAINS:"):
+    return 2
+  return 1
+
+
+def _load_mock_messages(step: int) -> list[dict[str, Any]]:
+  """Loads recorded mock A2UI messages from disk."""
+  path = _MOCK_RESULTS_DIR / f"{step}.json"
+  with path.open(encoding="utf-8") as fh:
+    payload = json.load(fh)
+
+  if not isinstance(payload, list):
+    raise ValueError(f"Mock payload must be a JSON list: {path}")
+  return payload
+
+
+def _mock_messages_to_parts(messages: list[dict[str, Any]]) -> list[Part]:
+  """Converts recorded A2UI messages into A2A data parts."""
+  return [Part(root=DataPart(data=message)) for message in messages]
+
+
 class TrainTicketBookingAgent:
   """An agent that helps users book train tickets."""
 
@@ -97,24 +129,11 @@ class TrainTicketBookingAgent:
     self.base_url = base_url
     self._agent_name = "Train Ticket Booking Agent"
     self._user_id = "remote_agent"
+    self._mode = os.getenv("TRAIN_TICKET_MODE", "live").strip().lower()
 
-    # Build OpenAI-compatible LLM configuration
-    self._litellm_model = os.getenv("OPENAI_MODEL", "openai/gpt-4.1-mini")
+    self._litellm_model: Optional[str] = None
     self._litellm_kwargs = {}
-    if os.getenv("OPENAI_BASE_URL"):
-      self._litellm_kwargs["api_base"] = os.getenv("OPENAI_BASE_URL")
-    if os.getenv("OPENAI_API_KEY"):
-      self._litellm_kwargs["api_key"] = os.getenv("OPENAI_API_KEY")
-    if os.getenv("OPENAI_REASONING_EFFORT"):
-      self._litellm_kwargs["reasoning_effort"] = os.getenv("OPENAI_REASONING_EFFORT")
-    thinking_type = os.getenv("OPENAI_THINKING_TYPE")
-    if thinking_type:
-      thinking_config: dict[str, Any] = {"type": thinking_type}
-      self._litellm_kwargs["thinking"] = thinking_config
-      allowed_openai_params = ["thinking", "reasoning_effort"]
-      self._litellm_kwargs["allowed_openai_params"] = allowed_openai_params
-
-    self._text_runner: Optional[Runner] = self._build_runner(self._build_llm_agent())
+    self._text_runner: Optional[Runner] = None
 
     self._schema_managers: Dict[str, A2uiSchemaManager] = {}
     self._ui_runners: Dict[str, Runner] = {}
@@ -122,8 +141,36 @@ class TrainTicketBookingAgent:
     for version in [VERSION_0_8, VERSION_0_9]:
       schema_manager = self._build_schema_manager(version)
       self._schema_managers[version] = schema_manager
-      agent = self._build_llm_agent(schema_manager)
-      self._ui_runners[version] = self._build_runner(agent)
+
+    if self._mode != "mock":
+      # Build OpenAI-compatible LLM configuration
+      self._litellm_model = os.getenv("OPENAI_MODEL", "openai/gpt-4.1-mini")
+      if os.getenv("OPENAI_BASE_URL"):
+        self._litellm_kwargs["api_base"] = os.getenv("OPENAI_BASE_URL")
+      if os.getenv("OPENAI_API_KEY"):
+        self._litellm_kwargs["api_key"] = os.getenv("OPENAI_API_KEY")
+      if os.getenv("OPENAI_REASONING_EFFORT"):
+        self._litellm_kwargs["reasoning_effort"] = os.getenv(
+            "OPENAI_REASONING_EFFORT"
+        )
+      thinking_type = os.getenv("OPENAI_THINKING_TYPE")
+      if thinking_type:
+        thinking_config: dict[str, Any] = {"type": thinking_type}
+        clear_thinking = _parse_bool_env(
+            os.getenv("OPENAI_THINKING_CLEAR_THINKING")
+        )
+        if clear_thinking is not None:
+          thinking_config["clear_thinking"] = clear_thinking
+        self._litellm_kwargs["thinking"] = thinking_config
+        self._litellm_kwargs["allowed_openai_params"] = [
+            "thinking",
+            "reasoning_effort",
+        ]
+
+      self._text_runner = self._build_runner(self._build_llm_agent())
+      for version, schema_manager in self._schema_managers.items():
+        agent = self._build_llm_agent(schema_manager)
+        self._ui_runners[version] = self._build_runner(agent)
 
     self._agent_card = self._build_agent_card()
 
@@ -224,6 +271,31 @@ class TrainTicketBookingAgent:
   async def stream(
       self, query, session_id, ui_version: Optional[str] = None
   ) -> AsyncIterable[dict[str, Any]]:
+    if self._mode == "mock":
+      if not ui_version:
+        yield {
+            "is_task_complete": True,
+            "parts": [
+                Part(
+                    root=TextPart(
+                        text=(
+                            "Train ticket booking mock mode is only available when"
+                            " the A2UI extension is active."
+                        )
+                    )
+                )
+            ],
+        }
+        return
+
+      step = _get_mock_step_for_query(query)
+      logger.info("--- TrainTicketBookingAgent.stream: mock mode step %s ---", step)
+      yield {
+          "is_task_complete": True,
+          "parts": _mock_messages_to_parts(_load_mock_messages(step)),
+      }
+      return
+
     session_state = {"base_url": self.base_url}
 
     # Determine which runner to use based on whether the a2ui extension is active.

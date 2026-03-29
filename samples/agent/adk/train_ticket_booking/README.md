@@ -24,6 +24,7 @@ Set:
 - optional `OPENAI_REASONING_EFFORT`
 - optional `OPENAI_THINKING_TYPE`
 - optional `OPENAI_THINKING_CLEAR_THINKING`
+- optional `TRAIN_TICKET_MODE`
 
 Example for GLM models when you want to suppress thinking blocks:
 
@@ -33,6 +34,15 @@ OPENAI_BASE_URL=https://your-openai-compatible-host/v1
 OPENAI_THINKING_TYPE=disabled
 OPENAI_THINKING_CLEAR_THINKING=true
 ```
+
+To run a fully static mock flow that replays recorded A2UI messages from
+`gen_results/1.json` to `gen_results/5.json`, set:
+
+```env
+TRAIN_TICKET_MODE=mock
+```
+
+In mock mode, OpenAI-compatible API configuration is not required.
 
 ## Run
 
