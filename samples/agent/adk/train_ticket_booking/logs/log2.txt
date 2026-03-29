@@ -1,0 +1,801 @@
+INFO:agent_executor:--- Client requested extensions: {'https://a2ui.org/a2a-extension/a2ui/v0.8'} ---
+INFO:agent_executor:--- AGENT_EXECUTOR: A2UI extension is active. Using UI agent. ---
+INFO:agent_executor:--- AGENT_EXECUTOR: Processing 1 message parts ---
+INFO:agent_executor:  Part 0: TextPart (text: Book me a high-speed train from Shanghai to Beijing tomorrow morning.)
+INFO:agent_executor:No a2ui UI event part found. Falling back to text input.
+INFO:agent_executor:--- AGENT_EXECUTOR: Final query for LLM: 'Book me a high-speed train from Shanghai to Beijing tomorrow morning.' ---
+INFO:agent:--- TrainTicketBookingAgent.stream: Attempt 1/2 for session 1818d3c0-3703-48e5-bf62-98c1cc1be1f9 ---
+19:55:14 - LiteLLM:INFO: utils.py:3879 - 
+LiteLLM completion() model= glm-4.7; provider = openai
+INFO:LiteLLM:
+LiteLLM completion() model= glm-4.7; provider = openai
+INFO:agent:Event from runner: model_version='glm-4.7' content=Content(
+  parts=[
+    Part(
+      text="""The user wants to book a high-speed train from Shanghai to Beijing tomorrow morning. Let me analyze this request:
+
+1. From: Shanghai
+2. To: Beijing
+3. Departure date: "tomorrow" - I need to use the demo date 2026-03-30 since I can't resolve the current date
+4. Time preference: "morning"
+5. Train type: "high-speed"
+
+Since this is a workflow request that starts the train search, I should:
+1. First, I need to call the search_trains tool to get train options
+2. Then use the TRAIN_RESULTS_EXAMPLE template to display the results
+
+Let me call the search_trains tool with the appropriate parameters.
+
+Wait, looking at the instructions more carefully:
+- "If the user has triggered a train search, you MUST call the `search_trains` tool and use the TRAIN_RESULTS_EXAMPLE template."
+
+So I need to call the tool first, then display the results using the template.
+
+The parameters for search_trains are:
+- from_station: "Shanghai"
+- to_station: "Beijing"
+- departure_date: Since "tomorrow" is relative and I can't resolve it, I should use the demo date "2026-03-30"
+- time_preference: "morning"
+- train_type: "high-speed"
+
+Let me make the tool call first.""",
+      thought=True
+    ),
+    Part(
+      function_call=FunctionCall(
+        args={
+          'departure_date': '2026-03-30',
+          'from_station': 'Shanghai',
+          'time_preference': 'morning',
+          'to_station': 'Beijing',
+          'train_type': 'high-speed'
+        },
+        id='call_-7762843393960436345',
+        name='search_trains'
+      )
+    ),
+  ],
+  role='model'
+) grounding_metadata=None partial=False turn_complete=None finish_reason=<FinishReason.STOP: 'STOP'> error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=GenerateContentResponseUsageMetadata(
+  cached_content_token_count=43,
+  candidates_token_count=334,
+  prompt_token_count=7128,
+  thoughts_token_count=283,
+  total_token_count=7462
+) live_session_resumption_update=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None invocation_id='e-d79bcf1c-1bb6-4106-bab7-9831cc980e12' author='train_ticket_booking_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, render_ui_widgets=None) long_running_tool_ids=set() branch=None id='ae53acf2-5806-4188-996e-e71d259877b5' timestamp=1774785312.7624419
+INFO:agent:Intermediate event: model_version='glm-4.7' content=Content(
+  parts=[
+    Part(
+      text="""The user wants to book a high-speed train from Shanghai to Beijing tomorrow morning. Let me analyze this request:
+
+1. From: Shanghai
+2. To: Beijing
+3. Departure date: "tomorrow" - I need to use the demo date 2026-03-30 since I can't resolve the current date
+4. Time preference: "morning"
+5. Train type: "high-speed"
+
+Since this is a workflow request that starts the train search, I should:
+1. First, I need to call the search_trains tool to get train options
+2. Then use the TRAIN_RESULTS_EXAMPLE template to display the results
+
+Let me call the search_trains tool with the appropriate parameters.
+
+Wait, looking at the instructions more carefully:
+- "If the user has triggered a train search, you MUST call the `search_trains` tool and use the TRAIN_RESULTS_EXAMPLE template."
+
+So I need to call the tool first, then display the results using the template.
+
+The parameters for search_trains are:
+- from_station: "Shanghai"
+- to_station: "Beijing"
+- departure_date: Since "tomorrow" is relative and I can't resolve it, I should use the demo date "2026-03-30"
+- time_preference: "morning"
+- train_type: "high-speed"
+
+Let me make the tool call first.""",
+      thought=True
+    ),
+    Part(
+      function_call=FunctionCall(
+        args={
+          'departure_date': '2026-03-30',
+          'from_station': 'Shanghai',
+          'time_preference': 'morning',
+          'to_station': 'Beijing',
+          'train_type': 'high-speed'
+        },
+        id='call_-7762843393960436345',
+        name='search_trains'
+      )
+    ),
+  ],
+  role='model'
+) grounding_metadata=None partial=False turn_complete=None finish_reason=<FinishReason.STOP: 'STOP'> error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=GenerateContentResponseUsageMetadata(
+  cached_content_token_count=43,
+  candidates_token_count=334,
+  prompt_token_count=7128,
+  thoughts_token_count=283,
+  total_token_count=7462
+) live_session_resumption_update=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None invocation_id='e-d79bcf1c-1bb6-4106-bab7-9831cc980e12' author='train_ticket_booking_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, render_ui_widgets=None) long_running_tool_ids=set() branch=None id='ae53acf2-5806-4188-996e-e71d259877b5' timestamp=1774785312.7624419
+INFO:tools:--- TOOL CALLED: search_trains ---
+INFO:tools:  - From: Shanghai
+INFO:tools:  - To: Beijing
+INFO:tools:  - Date: 2026-03-30
+INFO:tools:  - Time: morning
+INFO:tools:  - Type: high-speed
+INFO:tools:  - Found 2 matching trains
+INFO:agent:Event from runner: model_version=None content=Content(
+  parts=[
+    Part(
+      function_response=FunctionResponse(
+        id='call_-7762843393960436345',
+        name='search_trains',
+        response={
+          'result': '[{"trainId": "G101", "trainNumber": "G101", "from": "Shanghai", "to": "Beijing", "departureTime": "08:00", "arrivalTime": "12:38", "duration": "4h 38m", "date": "2026-03-30", "trainType": "high-speed", "seatOptions": [{"seatType": "Second Class", "price": 553, "remaining": 12}, {"seatType": "First Class", "price": 933, "remaining": 6}]}, {"trainId": "G115", "trainNumber": "G115", "from": "Shanghai", "to": "Beijing", "departureTime": "09:12", "arrivalTime": "13:58", "duration": "4h 46m", "date": "2026-03-30", "trainType": "high-speed", "seatOptions": [{"seatType": "Second Class", "price": 568, "remaining": 9}, {"seatType": "First Class", "price": 948, "remaining": 4}]}]'
+        }
+      )
+    ),
+  ],
+  role='user'
+) grounding_metadata=None partial=None turn_complete=None finish_reason=None error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=None live_session_resumption_update=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None invocation_id='e-d79bcf1c-1bb6-4106-bab7-9831cc980e12' author='train_ticket_booking_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, render_ui_widgets=None) long_running_tool_ids=None branch=None id='d4d9690d-e232-4693-9213-5c10ea05b998' timestamp=1774785320.5632744
+INFO:agent:Intermediate event: model_version=None content=Content(
+  parts=[
+    Part(
+      function_response=FunctionResponse(
+        id='call_-7762843393960436345',
+        name='search_trains',
+        response={
+          'result': '[{"trainId": "G101", "trainNumber": "G101", "from": "Shanghai", "to": "Beijing", "departureTime": "08:00", "arrivalTime": "12:38", "duration": "4h 38m", "date": "2026-03-30", "trainType": "high-speed", "seatOptions": [{"seatType": "Second Class", "price": 553, "remaining": 12}, {"seatType": "First Class", "price": 933, "remaining": 6}]}, {"trainId": "G115", "trainNumber": "G115", "from": "Shanghai", "to": "Beijing", "departureTime": "09:12", "arrivalTime": "13:58", "duration": "4h 46m", "date": "2026-03-30", "trainType": "high-speed", "seatOptions": [{"seatType": "Second Class", "price": 568, "remaining": 9}, {"seatType": "First Class", "price": 948, "remaining": 4}]}]'
+        }
+      )
+    ),
+  ],
+  role='user'
+) grounding_metadata=None partial=None turn_complete=None finish_reason=None error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=None live_session_resumption_update=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None invocation_id='e-d79bcf1c-1bb6-4106-bab7-9831cc980e12' author='train_ticket_booking_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, render_ui_widgets=None) long_running_tool_ids=None branch=None id='d4d9690d-e232-4693-9213-5c10ea05b998' timestamp=1774785320.5632744
+19:55:20 - LiteLLM:INFO: utils.py:3879 -
+LiteLLM completion() model= glm-4.7; provider = openai
+INFO:LiteLLM:
+LiteLLM completion() model= glm-4.7; provider = openai
+INFO:agent:Event from runner: model_version='glm-4.7' content=Content(
+  parts=[
+    Part(
+      text="""I got the search results. Now I need to display these using the TRAIN_RESULTS_EXAMPLE template format. Let me create the A2UI JSON response to show the train options to the user.
+
+The results show two trains:
+1. G101: 08:00-12:38 (4h 38m) - Second Class ¥553 (12 seats), First Class ¥933 (6 seats)
+2. G115: 09:12-13:58 (4h 46m) - Second Class ¥568 (9 seats), First Class ¥948 (4 seats)
+
+I need to create a surface that displays these options with a way to select a train and seat. Looking at the workflow, after showing train results, the next step is the passenger form when they select a seat.
+
+Let me create the appropriate A2UI JSON for the train results.""",
+      thought=True
+    ),
+    Part(
+      text="""<a2ui-json>
+{
+  "beginRendering": {
+    "surfaceId": "train-booking-wizard",
+    "root": "train-results",
+    "styles": {
+      "font": "system-ui",
+      "primaryColor": "#0066cc"
+    }
+  }
+}
+</a2ui-json>
+
+<a2ui-json>
+{
+  "surfaceUpdate": {
+    "surfaceId": "train-booking-wizard",
+    "components": [
+      {
+        "id": "train-results",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "search-header",
+                "train-list"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "search-header",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "title",
+                "search-summary"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "title",
+        "component": {
+          "Text": {
+            "text": {
+              "literalString": "Train Search Results"
+            },
+            "usageHint": "h2"
+          }
+        }
+      },
+      {
+        "id": "search-summary",
+        "component": {
+          "Text": {
+            "text": {
+              "literalString": "Shanghai to Beijing, March 30, 2026 - Morning departures"
+            },
+            "usageHint": "body"
+          }
+        }
+      },
+      {
+        "id": "train-list",
+        "component": {
+          "List": {
+            "children": {
+              "template": {
+                "componentId": "train-card",
+                "dataBinding": "/trains"
+              }
+            },
+            "direction": "vertical"
+          }
+        }
+      },
+      {
+        "id": "train-card",
+        "component": {
+          "Card": {
+            "child": "train-card-content"
+          }
+        }
+      },
+      {
+        "id": "train-card-content",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "train-header",
+                "train-details",
+                "seat-options"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "train-header",
+        "component": {
+          "Row": {
+            "children": {
+              "explicitList": [
+                "train-number",
+                "train-type"
+              ]
+            },
+            "distribution": "spaceBetween",
+            "alignment": "center"
+          }
+        }
+      },
+      {
+        "id": "train-number",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/trainNumber"
+            },
+            "usageHint": "h3"
+          }
+        }
+      },
+      {
+        "id": "train-type",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/trainTypeLabel"
+            },
+            "usageHint": "caption"
+          }
+        }
+      },
+      {
+        "id": "train-details",
+        "component": {
+          "Row": {
+            "children": {
+              "explicitList": [
+                "departure-info",
+                "duration-arrow",
+                "arrival-info"
+              ]
+            },
+            "distribution": "spaceBetween",
+            "alignment": "center"
+          }
+        }
+      },
+      {
+        "id": "departure-info",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "departure-time",
+                "departure-station"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "departure-time",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/departureTime"
+            },
+            "usageHint": "h4"
+          }
+        }
+      },
+      {
+        "id": "departure-station",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/from"
+            },
+            "usageHint": "caption"
+          }
+        }
+      },
+      {
+        "id": "duration-arrow",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "duration",
+                "arrow"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "duration",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/duration"
+            },
+            "usageHint": "caption"
+          }
+        }
+      },
+      {
+        "id": "arrow",
+        "component": {
+          "Icon": {
+            "name": {
+              "literalString": "arrowForward"
+            }
+          }
+        }
+      },
+      {
+        "id": "arrival-info",
+        "component": {
+          "Column": {
+            "children": {
+              "explicitList": [
+                "arrival-time",
+                "arrival-station"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "arrival-time",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/arrivalTime"
+            },
+            "usageHint": "h4"
+          }
+        }
+      },
+      {
+        "id": "arrival-station",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/to"
+            },
+            "usageHint": "caption"
+          }
+        }
+      },
+      {
+        "id": "seat-options",
+        "component": {
+          "Column": {
+            "children": {
+              "template": {
+                "componentId": "seat-option-row",
+                "dataBinding": "/seatOptions"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "seat-option-row",
+        "component": {
+          "Row": {
+            "children": {
+              "explicitList": [
+                "seat-type",
+                "seat-price",
+                "seat-remaining",
+                "seat-button"
+              ]
+            },
+            "distribution": "spaceBetween",
+            "alignment": "center"
+          }
+        }
+      },
+      {
+        "id": "seat-type",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/seatType"
+            },
+            "usageHint": "body"
+          }
+        }
+      },
+      {
+        "id": "seat-price",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/priceLabel"
+            },
+            "usageHint": "body"
+          }
+        }
+      },
+      {
+        "id": "seat-remaining",
+        "component": {
+          "Text": {
+            "text": {
+              "path": "/remainingLabel"
+            },
+            "usageHint": "caption"
+          }
+        }
+      },
+      {
+        "id": "seat-button",
+        "component": {
+          "Button": {
+            "child": "select-seat-text",
+            "primary": true,
+            "action": {
+              "name": "select_train_seat",
+              "context": [
+                {
+                  "key": "trainId",
+                  "value": {
+                    "path": "/trainId"
+                  }
+                },
+                {
+                  "key": "seatType",
+                  "value": {
+                    "path": "/seatType"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "select-seat-text",
+        "component": {
+          "Text": {
+            "text": {
+              "literalString": "Select"
+            },
+            "usageHint": "body"
+          }
+        }
+      }
+    ]
+  }
+}
+</a2ui-json>
+
+<a2ui-json>
+{
+  "dataModelUpdate": {
+    "surfaceId": "train-booking-wizard",
+    "path": "/",
+    "contents": [
+      {
+        "key": "trains",
+        "valueMap": [
+          {
+            "key": "G101",
+            "valueMap": [
+              {
+                "key": "trainId",
+                "valueString": "G101"
+              },
+              {
+                "key": "trainNumber",
+                "valueString": "G101"
+              },
+              {
+                "key": "trainTypeLabel",
+                "valueString": "High-Speed"
+              },
+              {
+                "key": "from",
+                "valueString": "Shanghai"
+              },
+              {
+                "key": "to",
+                "valueString": "Beijing"
+              },
+              {
+                "key": "departureTime",
+                "valueString": "08:00"
+              },
+              {
+                "key": "arrivalTime",
+                "valueString": "12:38"
+              },
+              {
+                "key": "duration",
+                "valueString": "4h 38m"
+              },
+              {
+                "key": "date",
+                "valueString": "2026-03-30"
+              },
+              {
+                "key": "trainType",
+                "valueString": "high-speed"
+              },
+              {
+                "key": "seatOptions",
+                "valueMap": [
+                  {
+                    "key": "0",
+                    "valueMap": [
+                      {
+                        "key": "seatType",
+                        "valueString": "Second Class"
+                      },
+                      {
+                        "key": "price",
+                        "valueNumber": 553
+                      },
+                      {
+                        "key": "remaining",
+                        "valueNumber": 12
+                      },
+                      {
+                        "key": "priceLabel",
+                        "valueString": "¥553"
+                      },
+                      {
+                        "key": "remainingLabel",
+                        "valueString": "12 seats left"
+                      },
+                      {
+                        "key": "trainId",
+                        "valueString": "G101"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "valueMap": [
+                      {
+                        "key": "seatType",
+                        "valueString": "First Class"
+                      },
+                      {
+                        "key": "price",
+                        "valueNumber": 933
+                      },
+                      {
+                        "key": "remaining",
+                        "valueNumber": 6
+                      },
+                      {
+                        "key": "priceLabel",
+                        "valueString": "¥933"
+                      },
+                      {
+                        "key": "remainingLabel",
+                        "valueString": "6 seats left"
+                      },
+                      {
+                        "key": "trainId",
+                        "valueString": "G101"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "G115",
+            "valueMap": [
+              {
+                "key": "trainId",
+                "valueString": "G115"
+              },
+              {
+                "key": "trainNumber",
+                "valueString": "G115"
+              },
+              {
+                "key": "trainTypeLabel",
+                "valueString": "High-Speed"
+              },
+              {
+                "key": "from",
+                "valueString": "Shanghai"
+              },
+              {
+                "key": "to",
+                "valueString": "Beijing"
+              },
+              {
+                "key": "departureTime",
+                "valueString": "09:12"
+              },
+              {
+                "key": "arrivalTime",
+                "valueString": "13:58"
+              },
+              {
+                "key": "duration",
+                "valueString": "4h 46m"
+              },
+              {
+                "key": "date",
+                "valueString": "2026-03-30"
+              },
+              {
+                "key": "trainType",
+                "valueString": "high-speed"
+              },
+              {
+                "key": "seatOptions",
+                "valueMap": [
+                  {
+                    "key": "0",
+                    "valueMap": [
+                      {
+                        "key": "seatType",
+                        "valueString": "Second Class"
+                      },
+                      {
+                        "key": "price",
+                        "valueNumber": 568
+                      },
+                      {
+                        "key": "remaining",
+                        "valueNumber": 9
+                      },
+                      {
+                        "key": "priceLabel",
+                        "valueString": "¥568"
+                      },
+                      {
+                        "key": "remainingLabel",
+                        "valueString": "9 seats left"
+                      },
+                      {
+                        "key": "trainId",
+                        "valueString": "G115"
+                      }
+                    ]
+                  },
+                  {
+                    "key": "1",
+                    "valueMap": [
+                      {
+                        "key": "seatType",
+                        "valueString": "First Class"
+                      },
+                      {
+                        "key": "price",
+                        "valueNumber": 948
+                      },
+                      {
+                        "key": "remaining",
+                        "valueNumber": 4
+                      },
+                      {
+                        "key": "priceLabel",
+                        "valueString": "¥948"
+                      },
+                      {
+                        "key": "remainingLabel",
+                        "valueString": "4 seats left"
+                      },
+                      {
+                        "key": "trainId",
+                        "valueString": "G115"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+</a2ui-json>"""
+    ),
+  ],
+  role='model'
+) grounding_metadata=None partial=False turn_complete=None finish_reason=<FinishReason.STOP: 'STOP'> error_code=None error_message=None interrupted=None custom_metadata=None usage_metadata=GenerateContentResponseUsageMetadata(
+  cached_content_token_count=7460,
+  candidates_token_count=2946,
+  prompt_token_count=7725,
+  thoughts_token_count=180,
+  total_token_count=10671
+) live_session_resumption_update=None input_transcription=None output_transcription=None avg_logprobs=None logprobs_result=None cache_metadata=None citation_metadata=None interaction_id=None invocation_id='e-d79bcf1c-1bb6-4106-bab7-9831cc980e12' author='train_ticket_booking_agent' actions=EventActions(skip_summarization=None, state_delta={}, artifact_delta={}, transfer_to_agent=None, escalate=None, requested_auth_configs={}, requested_tool_confirmations={}, compaction=None, end_of_agent=None, agent_state=None, rewind_before_invocation_id=None, render_ui_widgets=None) long_running_tool_ids=None branch=None id='5c1d3577-4ab2-4f9b-bb82-e411142141b0' timestamp=1774785320.565542
+INFO:agent:--- TrainTicketBookingAgent.stream: Validating UI response (Attempt 1)... ---
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:agent:--- TrainTicketBookingAgent.stream: Validating against A2UI_SCHEMA... ---
+INFO:agent:--- TrainTicketBookingAgent.stream: UI JSON successfully parsed AND validated against schema. Validation OK (Attempt 1). ---
+INFO:agent:--- TrainTicketBookingAgent.stream: Validating against A2UI_SCHEMA... ---
+INFO:agent:--- TrainTicketBookingAgent.stream: UI JSON successfully parsed AND validated against schema. Validation OK (Attempt 1). ---
+INFO:agent:--- TrainTicketBookingAgent.stream: Validating against A2UI_SCHEMA... ---
+INFO:agent:--- TrainTicketBookingAgent.stream: UI JSON successfully parsed AND validated against schema. Validation OK (Attempt 1). ---
+INFO:agent:--- TrainTicketBookingAgent.stream: Response is valid. Sending final response (Attempt 1). ---
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:a2ui.core.parser.payload_fixer:Received a single JSON object, wrapping in a list for validation.
+INFO:agent_executor:--- FINAL PARTS TO BE SENT ---
+INFO:agent_executor:  - Part 0: Type = <class 'a2a.types.DataPart'>
+INFO:agent_executor:    - Data: {'beginRendering': {'surfaceId': 'train-booking-wizard', 'root': 'train-results', 'styles': {'font': 'system-ui', 'primaryColor': '#0066cc'}}}...
+INFO:agent_executor:  - Part 1: Type = <class 'a2a.types.DataPart'>
+INFO:agent_executor:    - Data: {'surfaceUpdate': {'surfaceId': 'train-booking-wizard', 'components': [{'id': 'train-results', 'component': {'Column': {'children': {'explicitList': ['search-header', 'train-list']}}}}, {'id': 'search...
+INFO:agent_executor:  - Part 2: Type = <class 'a2a.types.DataPart'>
+INFO:agent_executor:    - Data: {'dataModelUpdate': {'surfaceId': 'train-booking-wizard', 'path': '/', 'contents': [{'key': 'trains', 'valueMap': [{'key': 'G101', 'valueMap': [{'key': 'trainId', 'valueString': 'G101'}, {'key': 'trai...
+INFO:agent_executor:-----------------------------
+INFO:     ::1:57582 - "POST / HTTP/1.1" 200 OK

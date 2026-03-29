@@ -1,0 +1,174 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "train-booking-wizard",
+      "root": "passenger-form-column",
+      "styles": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        {
+          "id": "passenger-form-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "passenger-title",
+                  "trip-summary",
+                  "name-field",
+                  "id-field",
+                  "phone-field",
+                  "review-button"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "passenger-title",
+          "component": {
+            "Text": {
+              "usageHint": "h2",
+              "text": {
+                "literalString": "Passenger Details"
+              }
+            }
+          }
+        },
+        {
+          "id": "trip-summary",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/tripSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "name-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "Passenger Name"
+              },
+              "text": {
+                "path": "/passengerName"
+              }
+            }
+          }
+        },
+        {
+          "id": "id-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "ID Number"
+              },
+              "text": {
+                "path": "/passengerId"
+              }
+            }
+          }
+        },
+        {
+          "id": "phone-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "Phone Number"
+              },
+              "text": {
+                "path": "/phoneNumber"
+              }
+            }
+          }
+        },
+        {
+          "id": "review-button",
+          "component": {
+            "Button": {
+              "child": "review-button-text",
+              "primary": true,
+              "action": {
+                "name": "continue_to_review",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "path": "/trainId"
+                    }
+                  },
+                  {
+                    "key": "trainNumber",
+                    "value": {
+                      "path": "/trainNumber"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "path": "/seatType"
+                    }
+                  },
+                  {
+                    "key": "departureTime",
+                    "value": {
+                      "path": "/departureTime"
+                    }
+                  },
+                  {
+                    "key": "arrivalTime",
+                    "value": {
+                      "path": "/arrivalTime"
+                    }
+                  },
+                  {
+                    "key": "finalPrice",
+                    "value": {
+                      "path": "/finalPrice"
+                    }
+                  },
+                  {
+                    "key": "passengerName",
+                    "value": {
+                      "path": "/passengerName"
+                    }
+                  },
+                  {
+                    "key": "passengerId",
+                    "value": {
+                      "path": "/passengerId"
+                    }
+                  },
+                  {
+                    "key": "phoneNumber",
+                    "value": {
+                      "path": "/phoneNumber"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "review-button-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Review Booking"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,105 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "train-booking-wizard",
+      "root": "result-card",
+      "styles": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        {
+          "id": "result-card",
+          "component": {
+            "Card": {
+              "child": "result-column"
+            }
+          }
+        },
+        {
+          "id": "result-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "result-title",
+                  "result-reference",
+                  "result-passenger",
+                  "result-train",
+                  "result-seat",
+                  "result-price"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "result-title",
+          "component": {
+            "Text": {
+              "usageHint": "h2",
+              "text": {
+                "literalString": "Booking Confirmed"
+              }
+            }
+          }
+        },
+        {
+          "id": "result-reference",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/bookingReference"
+              }
+            }
+          }
+        },
+        {
+          "id": "result-passenger",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/passengerSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "result-train",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/trainSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "result-seat",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/seatSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "result-price",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/priceSummary"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

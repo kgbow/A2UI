@@ -23,12 +23,22 @@ ROLE_DESCRIPTION = (
 )
 
 UI_DESCRIPTION = """
-- If the request starts the workflow, you MUST use the SEARCH_FORM_EXAMPLE template.
+- When the A2UI extension is active, output EXACTLY one `<a2ui-json>...</a2ui-json>` block and nothing else.
+- Do not output analysis, reasoning, markdown, or explanatory prose outside the A2UI block.
+- Do not use emojis or decorative characters in any UI text.
+- If the request starts the workflow, you MUST use the SEARCH_FORM_EXAMPLE template and you MUST NOT call tools first.
 - If the user has triggered a train search, you MUST call the `search_trains` tool and use the TRAIN_RESULTS_EXAMPLE template.
 - If the user has selected a train seat, you MUST use the PASSENGER_FORM_EXAMPLE template.
 - If the user has submitted passenger details for review, you MUST use the BOOKING_REVIEW_EXAMPLE template.
 - If the user has confirmed the booking, you MUST call the `book_train_ticket` tool and use the BOOKING_RESULT_EXAMPLE template.
 - Keep the workflow on a single surface named `train-booking-wizard`.
+- Use these exact action names: `search_trains`, `select_train_seat`, `continue_to_review`, and `confirm_booking`.
+- Copy the chosen example's component topology closely. Do not invent a brand new layout when an example already matches the current step.
+- For train search results, use explicit train cards and explicit `Button` components for each seat option.
+- Do not use `List.template` for train search results.
+- Every selectable seat option MUST be a visible `Button` with an `action`.
+- For result-page seat buttons, put the button context values directly in `action.context` using literals. Do not rely on path bindings there.
+- If the user uses a relative date like "tomorrow" and you cannot resolve the current date, use the demo date `2026-03-30`.
 """
 
 

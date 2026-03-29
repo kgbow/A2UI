@@ -1,0 +1,381 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "train-booking-wizard",
+      "root": "results-column",
+      "styles": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        {
+          "id": "results-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "results-title",
+                  "results-summary",
+                  "train-card-1",
+                  "train-card-2"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "results-title",
+          "component": {
+            "Text": {
+              "usageHint": "h2",
+              "text": {
+                "literalString": "Available Trains"
+              }
+            }
+          }
+        },
+        {
+          "id": "results-summary",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Shanghai to Beijing on 2026-03-30, morning departures"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-card-1",
+          "component": {
+            "Card": {
+              "child": "train-card-1-content"
+            }
+          }
+        },
+        {
+          "id": "train-card-1-content",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "train-1-number",
+                  "train-1-time",
+                  "train-1-second-btn",
+                  "train-1-first-btn"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-number",
+          "component": {
+            "Text": {
+              "usageHint": "h3",
+              "text": {
+                "literalString": "G101"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-time",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "08:00 -> 12:38 | 4h 38m"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-second-btn",
+          "component": {
+            "Button": {
+              "child": "train-1-second-text",
+              "primary": true,
+              "action": {
+                "name": "select_train_seat",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "literalString": "G101"
+                    }
+                  },
+                  {
+                    "key": "trainNumber",
+                    "value": {
+                      "literalString": "G101"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "literalString": "Second Class"
+                    }
+                  },
+                  {
+                    "key": "departureTime",
+                    "value": {
+                      "literalString": "08:00"
+                    }
+                  },
+                  {
+                    "key": "arrivalTime",
+                    "value": {
+                      "literalString": "12:38"
+                    }
+                  },
+                  {
+                    "key": "finalPrice",
+                    "value": {
+                      "literalNumber": 553
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-second-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Second Class - CNY 553"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-first-btn",
+          "component": {
+            "Button": {
+              "child": "train-1-first-text",
+              "action": {
+                "name": "select_train_seat",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "literalString": "G101"
+                    }
+                  },
+                  {
+                    "key": "trainNumber",
+                    "value": {
+                      "literalString": "G101"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "literalString": "First Class"
+                    }
+                  },
+                  {
+                    "key": "departureTime",
+                    "value": {
+                      "literalString": "08:00"
+                    }
+                  },
+                  {
+                    "key": "arrivalTime",
+                    "value": {
+                      "literalString": "12:38"
+                    }
+                  },
+                  {
+                    "key": "finalPrice",
+                    "value": {
+                      "literalNumber": 933
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-1-first-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "First Class - CNY 933"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-card-2",
+          "component": {
+            "Card": {
+              "child": "train-card-2-content"
+            }
+          }
+        },
+        {
+          "id": "train-card-2-content",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "train-2-number",
+                  "train-2-time",
+                  "train-2-second-btn",
+                  "train-2-first-btn"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-number",
+          "component": {
+            "Text": {
+              "usageHint": "h3",
+              "text": {
+                "literalString": "G115"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-time",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "09:12 -> 13:58 | 4h 46m"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-second-btn",
+          "component": {
+            "Button": {
+              "child": "train-2-second-text",
+              "primary": true,
+              "action": {
+                "name": "select_train_seat",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "literalString": "G115"
+                    }
+                  },
+                  {
+                    "key": "trainNumber",
+                    "value": {
+                      "literalString": "G115"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "literalString": "Second Class"
+                    }
+                  },
+                  {
+                    "key": "departureTime",
+                    "value": {
+                      "literalString": "09:12"
+                    }
+                  },
+                  {
+                    "key": "arrivalTime",
+                    "value": {
+                      "literalString": "13:58"
+                    }
+                  },
+                  {
+                    "key": "finalPrice",
+                    "value": {
+                      "literalNumber": 568
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-second-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Second Class - CNY 568"
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-first-btn",
+          "component": {
+            "Button": {
+              "child": "train-2-first-text",
+              "action": {
+                "name": "select_train_seat",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "literalString": "G115"
+                    }
+                  },
+                  {
+                    "key": "trainNumber",
+                    "value": {
+                      "literalString": "G115"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "literalString": "First Class"
+                    }
+                  },
+                  {
+                    "key": "departureTime",
+                    "value": {
+                      "literalString": "09:12"
+                    }
+                  },
+                  {
+                    "key": "arrivalTime",
+                    "value": {
+                      "literalString": "13:58"
+                    }
+                  },
+                  {
+                    "key": "finalPrice",
+                    "value": {
+                      "literalNumber": 948
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "train-2-first-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "First Class - CNY 948"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

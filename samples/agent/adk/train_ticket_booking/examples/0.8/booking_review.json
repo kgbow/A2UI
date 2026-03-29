@@ -1,0 +1,138 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "train-booking-wizard",
+      "root": "review-card",
+      "styles": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        {
+          "id": "review-card",
+          "component": {
+            "Card": {
+              "child": "review-column"
+            }
+          }
+        },
+        {
+          "id": "review-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "review-title",
+                  "review-trip",
+                  "review-passenger",
+                  "review-price",
+                  "confirm-button"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "review-title",
+          "component": {
+            "Text": {
+              "usageHint": "h2",
+              "text": {
+                "literalString": "Review Your Booking"
+              }
+            }
+          }
+        },
+        {
+          "id": "review-trip",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/tripSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "review-passenger",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/passengerSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "review-price",
+          "component": {
+            "Text": {
+              "text": {
+                "path": "/priceSummary"
+              }
+            }
+          }
+        },
+        {
+          "id": "confirm-button",
+          "component": {
+            "Button": {
+              "child": "confirm-button-text",
+              "primary": true,
+              "action": {
+                "name": "confirm_booking",
+                "context": [
+                  {
+                    "key": "trainId",
+                    "value": {
+                      "path": "/trainId"
+                    }
+                  },
+                  {
+                    "key": "seatType",
+                    "value": {
+                      "path": "/seatType"
+                    }
+                  },
+                  {
+                    "key": "passengerName",
+                    "value": {
+                      "path": "/passengerName"
+                    }
+                  },
+                  {
+                    "key": "passengerId",
+                    "value": {
+                      "path": "/passengerId"
+                    }
+                  },
+                  {
+                    "key": "phoneNumber",
+                    "value": {
+                      "path": "/phoneNumber"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "confirm-button-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Confirm Booking"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

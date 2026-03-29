@@ -49,6 +49,33 @@ from a2ui.a2a import get_a2ui_agent_extension, parse_response_to_parts
 logger = logging.getLogger(__name__)
 
 
+def _extract_final_response_text(parts: list[types.Part] | None) -> str | None:
+  """Extracts the best final text response while ignoring reasoning blocks.
+
+  Prefer the first non-thought text part containing A2UI tags. Fall back to
+  joining non-thought text parts if no tagged part is present.
+  """
+  if not parts:
+    return None
+
+  non_thought_texts: list[str] = []
+  tagged_texts: list[str] = []
+
+  for part in parts:
+    text = getattr(part, "text", None)
+    if not text or getattr(part, "thought", False):
+      continue
+    non_thought_texts.append(text)
+    if A2UI_OPEN_TAG in text and A2UI_CLOSE_TAG in text:
+      tagged_texts.append(text)
+
+  if tagged_texts:
+    return "\n".join(tagged_texts)
+  if non_thought_texts:
+    return "\n".join(non_thought_texts)
+  return None
+
+
 class TrainTicketBookingAgent:
   """An agent that helps users book train tickets."""
 
@@ -145,10 +172,19 @@ class TrainTicketBookingAgent:
       self, schema_manager: Optional[A2uiSchemaManager] = None
   ) -> LlmAgent:
     """Builds the LLM agent for the train ticket booking agent."""
+    version_specific_ui_description = UI_DESCRIPTION
+    if schema_manager:
+      version = getattr(schema_manager, "version", "")
+      if version == VERSION_0_8:
+        version_specific_ui_description += """
+- You are generating for A2UI v0.8.
+- Prefer the exact v0.8 examples over any custom structure.
+- For the train results step, keep the explicit card-and-button structure from the v0.8 example.
+"""
     instruction = (
         schema_manager.generate_system_prompt(
             role_description=ROLE_DESCRIPTION,
-            ui_description=UI_DESCRIPTION,
+            ui_description=version_specific_ui_description,
             include_schema=True,
             include_examples=True,
             validate_examples=False,  # Skip validation due to schema resolution issues
@@ -242,9 +278,9 @@ class TrainTicketBookingAgent:
       ):
         logger.info(f"Event from runner: {event}")
         if event.is_final_response():
-          if event.content and event.content.parts and event.content.parts[0].text:
-            final_response_content = "\n".join(
-                [p.text for p in event.content.parts if p.text]
+          if event.content and event.content.parts:
+            final_response_content = _extract_final_response_text(
+                event.content.parts
             )
           break  # Got the final response, stop consuming events
         else:

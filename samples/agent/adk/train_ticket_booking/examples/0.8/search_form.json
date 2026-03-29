@@ -1,0 +1,206 @@
+[
+  {
+    "beginRendering": {
+      "surfaceId": "train-booking-wizard",
+      "root": "search-form-column",
+      "styles": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "surfaceUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        {
+          "id": "search-form-column",
+          "component": {
+            "Column": {
+              "children": {
+                "explicitList": [
+                  "search-title",
+                  "search-summary",
+                  "from-field",
+                  "to-field",
+                  "date-field",
+                  "time-field",
+                  "type-field",
+                  "search-button"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "search-title",
+          "component": {
+            "Text": {
+              "usageHint": "h2",
+              "text": {
+                "literalString": "Book a train ticket"
+              }
+            }
+          }
+        },
+        {
+          "id": "search-summary",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Review the auto-filled route and search for available trains."
+              }
+            }
+          }
+        },
+        {
+          "id": "from-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "From"
+              },
+              "text": {
+                "path": "/fromStation"
+              }
+            }
+          }
+        },
+        {
+          "id": "to-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "To"
+              },
+              "text": {
+                "path": "/toStation"
+              }
+            }
+          }
+        },
+        {
+          "id": "date-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "Departure Date"
+              },
+              "text": {
+                "path": "/departureDate"
+              }
+            }
+          }
+        },
+        {
+          "id": "time-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "Time Preference"
+              },
+              "text": {
+                "path": "/timePreference"
+              }
+            }
+          }
+        },
+        {
+          "id": "type-field",
+          "component": {
+            "TextField": {
+              "label": {
+                "literalString": "Train Type"
+              },
+              "text": {
+                "path": "/trainType"
+              }
+            }
+          }
+        },
+        {
+          "id": "search-button",
+          "component": {
+            "Button": {
+              "child": "search-button-text",
+              "primary": true,
+              "action": {
+                "name": "search_trains",
+                "context": [
+                  {
+                    "key": "fromStation",
+                    "value": {
+                      "path": "/fromStation"
+                    }
+                  },
+                  {
+                    "key": "toStation",
+                    "value": {
+                      "path": "/toStation"
+                    }
+                  },
+                  {
+                    "key": "departureDate",
+                    "value": {
+                      "path": "/departureDate"
+                    }
+                  },
+                  {
+                    "key": "timePreference",
+                    "value": {
+                      "path": "/timePreference"
+                    }
+                  },
+                  {
+                    "key": "trainType",
+                    "value": {
+                      "path": "/trainType"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "id": "search-button-text",
+          "component": {
+            "Text": {
+              "text": {
+                "literalString": "Search Trains"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "dataModelUpdate": {
+      "surfaceId": "train-booking-wizard",
+      "path": "/",
+      "contents": [
+        {
+          "key": "fromStation",
+          "valueString": "Shanghai"
+        },
+        {
+          "key": "toStation",
+          "valueString": "Beijing"
+        },
+        {
+          "key": "departureDate",
+          "valueString": "2026-03-30"
+        },
+        {
+          "key": "timePreference",
+          "valueString": "morning"
+        },
+        {
+          "key": "trainType",
+          "valueString": "high-speed"
+        }
+      ]
+    }
+  }
+]
