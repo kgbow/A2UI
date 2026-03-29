@@ -32,6 +32,7 @@ dependencies = [
     { name = "a2a-sdk" },
     { name = "google-adk" },
     { name = "google-genai" },
+    { name = "httpx" },
     { name = "jsonschema" },
 ]
 
@@ -47,6 +48,7 @@ requires-dist = [
     { name = "a2a-sdk", specifier = ">=0.3.0" },
     { name = "google-adk", specifier = ">=1.28.0" },
     { name = "google-genai", specifier = ">=1.27.0" },
+    { name = "httpx", specifier = ">=0.28.0" },
     { name = "jsonschema", specifier = ">=4.0.0" },
 ]
 
