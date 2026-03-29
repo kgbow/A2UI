@@ -86,6 +86,18 @@ SAMPLE_CONFIGS = [
         "schema_modifiers": [remove_strict_validation],
         "validate": True,
     },
+    {
+        "name": "train_ticket_booking",
+        "path": SAMPLES_DIR / "train_ticket_booking",
+        "catalogs": [
+            BasicCatalog.get_config(
+                version=VERSION_0_9,
+                examples_path="examples/0.9",
+            )
+        ],
+        "schema_modifiers": [remove_strict_validation],
+        "validate": True,
+    },
 ]
 
 
