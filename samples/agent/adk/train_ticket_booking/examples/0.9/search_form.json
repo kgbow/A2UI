@@ -1,0 +1,47 @@
+[
+  {
+    "version": "v0.9",
+    "createSurface": {
+      "surfaceId": "train-booking-wizard",
+      "catalogId": "https://a2ui.org/specification/v0_9/basic_catalog.json",
+      "theme": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        { "id": "root", "component": "Column", "children": ["title", "summary", "from-field", "to-field", "date-field", "time-field", "type-field", "search-button"] },
+        { "id": "title", "component": "Text", "variant": "h2", "text": { "path": "/title" } },
+        { "id": "summary", "component": "Text", "text": { "path": "/summary" } },
+        { "id": "from-field", "component": "TextField", "label": "From", "value": { "path": "/fromStation" } },
+        { "id": "to-field", "component": "TextField", "label": "To", "value": { "path": "/toStation" } },
+        { "id": "date-field", "component": "TextField", "label": "Departure Date", "value": { "path": "/departureDate" } },
+        { "id": "time-field", "component": "TextField", "label": "Time Preference", "value": { "path": "/timePreference" } },
+        { "id": "type-field", "component": "TextField", "label": "Train Type", "value": { "path": "/trainType" } },
+        { "id": "search-button", "component": "Button", "child": "search-button-text", "action": { "event": { "name": "search_trains", "context": { "fromStation": { "path": "/fromStation" }, "toStation": { "path": "/toStation" }, "departureDate": { "path": "/departureDate" }, "timePreference": { "path": "/timePreference" }, "trainType": { "path": "/trainType" } } } } },
+        { "id": "search-button-text", "component": "Text", "text": "Search Trains" }
+      ]
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateDataModel": {
+      "surfaceId": "train-booking-wizard",
+      "path": "/",
+      "value": {
+        "title": "Book a train ticket",
+        "summary": "Review the auto-filled route and search for available trains.",
+        "fromStation": "Shanghai",
+        "toStation": "Beijing",
+        "departureDate": "2026-03-30",
+        "timePreference": "morning",
+        "trainType": "high-speed"
+      }
+    }
+  }
+]

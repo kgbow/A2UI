@@ -1,0 +1,29 @@
+[
+  {
+    "version": "v0.9",
+    "createSurface": {
+      "surfaceId": "train-booking-wizard",
+      "catalogId": "https://a2ui.org/specification/v0_9/basic_catalog.json",
+      "theme": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        { "id": "root", "component": "Column", "children": ["title", "trip-summary", "name-field", "id-field", "phone-field", "review-button"] },
+        { "id": "title", "component": "Text", "variant": "h2", "text": "Passenger Details" },
+        { "id": "trip-summary", "component": "Text", "text": { "path": "/tripSummary" } },
+        { "id": "name-field", "component": "TextField", "label": "Passenger Name", "value": { "path": "/passengerName" } },
+        { "id": "id-field", "component": "TextField", "label": "ID Number", "value": { "path": "/passengerId" } },
+        { "id": "phone-field", "component": "TextField", "label": "Phone Number", "value": { "path": "/phoneNumber" } },
+        { "id": "review-button", "component": "Button", "child": "review-button-text", "action": { "event": { "name": "continue_to_review", "context": { "trainId": { "path": "/trainId" }, "trainNumber": { "path": "/trainNumber" }, "seatType": { "path": "/seatType" }, "departureTime": { "path": "/departureTime" }, "arrivalTime": { "path": "/arrivalTime" }, "finalPrice": { "path": "/finalPrice" }, "passengerName": { "path": "/passengerName" }, "passengerId": { "path": "/passengerId" }, "phoneNumber": { "path": "/phoneNumber" } } } } },
+        { "id": "review-button-text", "component": "Text", "text": "Review Booking" }
+      ]
+    }
+  }
+]

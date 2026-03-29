@@ -1,0 +1,121 @@
+[
+  {
+    "version": "v0.9",
+    "createSurface": {
+      "surfaceId": "train-booking-wizard",
+      "catalogId": "https://a2ui.org/specification/v0_9/basic_catalog.json",
+      "theme": {
+        "primaryColor": "#0052CC",
+        "font": "Roboto"
+      }
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        { "id": "root", "component": "Column", "children": ["title", "summary", "train-list"] },
+        { "id": "title", "component": "Text", "variant": "h2", "text": "Available Trains" },
+        { "id": "summary", "component": "Text", "text": { "path": "/searchSummary" } },
+        { "id": "train-list", "component": "Column", "children": ["train-card-1", "train-card-2", "train-card-3"] },
+
+        { "id": "train-card-1", "component": "Card", "child": "card-1-content" },
+        { "id": "card-1-content", "component": "Column", "children": ["train-1-header", "train-1-details", "train-1-seats"] },
+        { "id": "train-1-header", "component": "Row", "children": ["train-1-number", "train-1-type"] },
+        { "id": "train-1-number", "component": "Text", "variant": "h3", "text": { "path": "/trains/0/trainNumber" } },
+        { "id": "train-1-type", "component": "Text", "text": { "path": "/trains/0/trainType" } },
+        { "id": "train-1-details", "component": "Row", "children": ["train-1-departure", "train-1-arrow", "train-1-arrival", "train-1-duration"] },
+        { "id": "train-1-departure", "component": "Text", "text": { "path": "/trains/0/departureTime" } },
+        { "id": "train-1-arrow", "component": "Text", "text": " -> " },
+        { "id": "train-1-arrival", "component": "Text", "text": { "path": "/trains/0/arrivalTime" } },
+        { "id": "train-1-duration", "component": "Text", "text": { "path": "/trains/0/duration" } },
+        { "id": "train-1-seats", "component": "Row", "children": ["train-1-seat-2nd-btn", "train-1-seat-1st-btn"] },
+        { "id": "train-1-seat-2nd-btn", "component": "Button", "child": "train-1-seat-2nd-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/0/trainId" }, "trainNumber": { "path": "/trains/0/trainNumber" }, "seatType": "Second Class", "departureTime": { "path": "/trains/0/departureTime" }, "arrivalTime": { "path": "/trains/0/arrivalTime" }, "finalPrice": { "path": "/trains/0/seatOptions/0/price" } } } } },
+        { "id": "train-1-seat-2nd-text", "component": "Text", "text": "Second Class - CNY {path: /trains/0/seatOptions/0/price}" },
+        { "id": "train-1-seat-1st-btn", "component": "Button", "child": "train-1-seat-1st-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/0/trainId" }, "trainNumber": { "path": "/trains/0/trainNumber" }, "seatType": "First Class", "departureTime": { "path": "/trains/0/departureTime" }, "arrivalTime": { "path": "/trains/0/arrivalTime" }, "finalPrice": { "path": "/trains/0/seatOptions/1/price" } } } } },
+        { "id": "train-1-seat-1st-text", "component": "Text", "text": "First Class - CNY {path: /trains/0/seatOptions/1/price}" },
+
+        { "id": "train-card-2", "component": "Card", "child": "card-2-content" },
+        { "id": "card-2-content", "component": "Column", "children": ["train-2-header", "train-2-details", "train-2-seats"] },
+        { "id": "train-2-header", "component": "Row", "children": ["train-2-number", "train-2-type"] },
+        { "id": "train-2-number", "component": "Text", "variant": "h3", "text": { "path": "/trains/1/trainNumber" } },
+        { "id": "train-2-type", "component": "Text", "text": { "path": "/trains/1/trainType" } },
+        { "id": "train-2-details", "component": "Row", "children": ["train-2-departure", "train-2-arrow", "train-2-arrival", "train-2-duration"] },
+        { "id": "train-2-departure", "component": "Text", "text": { "path": "/trains/1/departureTime" } },
+        { "id": "train-2-arrow", "component": "Text", "text": " -> " },
+        { "id": "train-2-arrival", "component": "Text", "text": { "path": "/trains/1/arrivalTime" } },
+        { "id": "train-2-duration", "component": "Text", "text": { "path": "/trains/1/duration" } },
+        { "id": "train-2-seats", "component": "Row", "children": ["train-2-seat-2nd-btn", "train-2-seat-1st-btn"] },
+        { "id": "train-2-seat-2nd-btn", "component": "Button", "child": "train-2-seat-2nd-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/1/trainId" }, "trainNumber": { "path": "/trains/1/trainNumber" }, "seatType": "Second Class", "departureTime": { "path": "/trains/1/departureTime" }, "arrivalTime": { "path": "/trains/1/arrivalTime" }, "finalPrice": { "path": "/trains/1/seatOptions/0/price" } } } } },
+        { "id": "train-2-seat-2nd-text", "component": "Text", "text": "Second Class - CNY {path: /trains/1/seatOptions/0/price}" },
+        { "id": "train-2-seat-1st-btn", "component": "Button", "child": "train-2-seat-1st-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/1/trainId" }, "trainNumber": { "path": "/trains/1/trainNumber" }, "seatType": "First Class", "departureTime": { "path": "/trains/1/departureTime" }, "arrivalTime": { "path": "/trains/1/arrivalTime" }, "finalPrice": { "path": "/trains/1/seatOptions/1/price" } } } } },
+        { "id": "train-2-seat-1st-text", "component": "Text", "text": "First Class - CNY {path: /trains/1/seatOptions/1/price}" },
+
+        { "id": "train-card-3", "component": "Card", "child": "card-3-content" },
+        { "id": "card-3-content", "component": "Column", "children": ["train-3-header", "train-3-details", "train-3-seats"] },
+        { "id": "train-3-header", "component": "Row", "children": ["train-3-number", "train-3-type"] },
+        { "id": "train-3-number", "component": "Text", "variant": "h3", "text": { "path": "/trains/2/trainNumber" } },
+        { "id": "train-3-type", "component": "Text", "text": { "path": "/trains/2/trainType" } },
+        { "id": "train-3-details", "component": "Row", "children": ["train-3-departure", "train-3-arrow", "train-3-arrival", "train-3-duration"] },
+        { "id": "train-3-departure", "component": "Text", "text": { "path": "/trains/2/departureTime" } },
+        { "id": "train-3-arrow", "component": "Text", "text": " -> " },
+        { "id": "train-3-arrival", "component": "Text", "text": { "path": "/trains/2/arrivalTime" } },
+        { "id": "train-3-duration", "component": "Text", "text": { "path": "/trains/2/duration" } },
+        { "id": "train-3-seats", "component": "Row", "children": ["train-3-seat-2nd-btn", "train-3-seat-1st-btn"] },
+        { "id": "train-3-seat-2nd-btn", "component": "Button", "child": "train-3-seat-2nd-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/2/trainId" }, "trainNumber": { "path": "/trains/2/trainNumber" }, "seatType": "Second Class", "departureTime": { "path": "/trains/2/departureTime" }, "arrivalTime": { "path": "/trains/2/arrivalTime" }, "finalPrice": { "path": "/trains/2/seatOptions/0/price" } } } } },
+        { "id": "train-3-seat-2nd-text", "component": "Text", "text": "Second Class - CNY {path: /trains/2/seatOptions/0/price}" },
+        { "id": "train-3-seat-1st-btn", "component": "Button", "child": "train-3-seat-1st-text", "action": { "event": { "name": "select_train_seat", "context": { "trainId": { "path": "/trains/2/trainId" }, "trainNumber": { "path": "/trains/2/trainNumber" }, "seatType": "First Class", "departureTime": { "path": "/trains/2/departureTime" }, "arrivalTime": { "path": "/trains/2/arrivalTime" }, "finalPrice": { "path": "/trains/2/seatOptions/1/price" } } } } },
+        { "id": "train-3-seat-1st-text", "component": "Text", "text": "First Class - CNY {path: /trains/2/seatOptions/1/price}" }
+      ]
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateDataModel": {
+      "surfaceId": "train-booking-wizard",
+      "path": "/",
+      "value": {
+        "searchSummary": "Shanghai -> Beijing on 2026-03-30, morning high-speed trains",
+        "trains": [
+          {
+            "trainId": "G101",
+            "trainNumber": "G101",
+            "trainType": "high-speed",
+            "departureTime": "08:00",
+            "arrivalTime": "12:38",
+            "duration": "4h 38m",
+            "seatOptions": [
+              { "seatType": "Second Class", "price": 553 },
+              { "seatType": "First Class", "price": 933 }
+            ]
+          },
+          {
+            "trainId": "G115",
+            "trainNumber": "G115",
+            "trainType": "high-speed",
+            "departureTime": "09:12",
+            "arrivalTime": "13:58",
+            "duration": "4h 46m",
+            "seatOptions": [
+              { "seatType": "Second Class", "price": 568 },
+              { "seatType": "First Class", "price": 948 }
+            ]
+          },
+          {
+            "trainId": "D301",
+            "trainNumber": "D301",
+            "trainType": "bullet",
+            "departureTime": "14:20",
+            "arrivalTime": "21:50",
+            "duration": "7h 30m",
+            "seatOptions": [
+              { "seatType": "Second Class", "price": 432 },
+              { "seatType": "First Class", "price": 712 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]
