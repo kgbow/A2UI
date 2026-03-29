@@ -76,6 +76,18 @@ def _extract_final_response_text(parts: list[types.Part] | None) -> str | None:
   return None
 
 
+def _parse_bool_env(value: str | None) -> bool | None:
+  """Parses a boolean environment variable value."""
+  if value is None:
+    return None
+  normalized = value.strip().lower()
+  if normalized in {"1", "true", "yes", "on"}:
+    return True
+  if normalized in {"0", "false", "no", "off"}:
+    return False
+  return None
+
+
 class TrainTicketBookingAgent:
   """An agent that helps users book train tickets."""
 
@@ -93,6 +105,14 @@ class TrainTicketBookingAgent:
       self._litellm_kwargs["api_base"] = os.getenv("OPENAI_BASE_URL")
     if os.getenv("OPENAI_API_KEY"):
       self._litellm_kwargs["api_key"] = os.getenv("OPENAI_API_KEY")
+    if os.getenv("OPENAI_REASONING_EFFORT"):
+      self._litellm_kwargs["reasoning_effort"] = os.getenv("OPENAI_REASONING_EFFORT")
+    thinking_type = os.getenv("OPENAI_THINKING_TYPE")
+    if thinking_type:
+      thinking_config: dict[str, Any] = {"type": thinking_type}
+      self._litellm_kwargs["thinking"] = thinking_config
+      allowed_openai_params = ["thinking", "reasoning_effort"]
+      self._litellm_kwargs["allowed_openai_params"] = allowed_openai_params
 
     self._text_runner: Optional[Runner] = self._build_runner(self._build_llm_agent())
 

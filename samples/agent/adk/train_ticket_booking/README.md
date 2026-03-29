@@ -21,6 +21,18 @@ Set:
 - `OPENAI_API_KEY`
 - `OPENAI_MODEL`
 - optional `OPENAI_BASE_URL`
+- optional `OPENAI_REASONING_EFFORT`
+- optional `OPENAI_THINKING_TYPE`
+- optional `OPENAI_THINKING_CLEAR_THINKING`
+
+Example for GLM models when you want to suppress thinking blocks:
+
+```env
+OPENAI_MODEL=openai/glm-4.7
+OPENAI_BASE_URL=https://your-openai-compatible-host/v1
+OPENAI_THINKING_TYPE=disabled
+OPENAI_THINKING_CLEAR_THINKING=true
+```
 
 ## Run
 
