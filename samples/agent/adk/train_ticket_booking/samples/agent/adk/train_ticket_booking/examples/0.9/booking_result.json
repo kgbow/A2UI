@@ -1,0 +1,43 @@
+[
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        { "id": "root", "component": "Column", "children": ["success-icon", "title", "booking-ref", "details-card"] },
+        { "id": "success-icon", "component": "Text", "text": "✓" },
+        { "id": "title", "component": "Text", "variant": "h2", "text": "Booking Confirmed!" },
+        { "id": "booking-ref", "component": "Text", "variant": "h3", "text": "Reference: {path: /bookingReference}" },
+
+        { "id": "details-card", "component": "Card", "children": ["details-content"] },
+        { "id": "details-content", "component": "Column", "children": ["passenger-row", "train-row", "seat-row", "price-row"] },
+        { "id": "passenger-row", "component": "Row", "children": ["passenger-label", "passenger-value"] },
+        { "id": "passenger-label", "component": "Text", "text": "Passenger: " },
+        { "id": "passenger-value", "component": "Text", "text": { "path": "/passengerName" } },
+        { "id": "train-row", "component": "Row", "children": ["train-label", "train-value"] },
+        { "id": "train-label", "component": "Text", "text": "Train: " },
+        { "id": "train-value", "component": "Text", "text": { "path": "/trainNumber" } },
+        { "id": "seat-row", "component": "Row", "children": ["seat-label", "seat-value"] },
+        { "id": "seat-label", "component": "Text", "text": "Seat: " },
+        { "id": "seat-value", "component": "Text", "text": { "path": "/seatType" } },
+        { "id": "price-row", "component": "Row", "children": ["price-label", "price-value"] },
+        { "id": "price-label", "component": "Text", "text": "Price Paid: " },
+        { "id": "price-value", "component": "Text", "text": "¥{path: /finalPrice}" }
+      ]
+    }
+  },
+  {
+    "version": "v0.9",
+    "updateDataModel": {
+      "surfaceId": "train-booking-wizard",
+      "path": "/",
+      "value": {
+        "bookingReference": "TTB-1A2B3C4D",
+        "passengerName": "Kevin Zhang",
+        "trainNumber": "G101",
+        "seatType": "Second Class",
+        "finalPrice": 553
+      }
+    }
+  }
+]

@@ -28,6 +28,27 @@ Set:
 uv run .
 ```
 
+## Run With React Shell
+
+Start the agent:
+
+```bash
+cd samples/agent/adk/train_ticket_booking
+uv run .
+```
+
+In another terminal, start the React shell:
+
+```bash
+cd samples/client/react/shell
+npm install
+npm run dev
+```
+
+Open:
+
+`http://localhost:5173/?app=train-ticket`
+
 ## Demo Flow
 
 1. Send a natural-language booking request.

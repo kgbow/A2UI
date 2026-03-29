@@ -1,0 +1,47 @@
+[
+  {
+    "version": "v0.9",
+    "updateComponents": {
+      "surfaceId": "train-booking-wizard",
+      "components": [
+        { "id": "root", "component": "Column", "children": ["title", "trip-card", "passenger-card", "price-section", "confirm-button"] },
+        { "id": "title", "component": "Text", "variant": "h2", "text": "Review Your Booking" },
+
+        { "id": "trip-card", "component": "Card", "children": ["trip-content"] },
+        { "id": "trip-content", "component": "Column", "children": ["trip-header", "trip-details"] },
+        { "id": "trip-header", "component": "Text", "variant": "h3", "text": "Trip Details" },
+        { "id": "trip-details", "component": "Column", "children": ["train-number-row", "time-row", "seat-row"] },
+        { "id": "train-number-row", "component": "Row", "children": ["train-number-label", "train-number-value"] },
+        { "id": "train-number-label", "component": "Text", "text": "Train: " },
+        { "id": "train-number-value", "component": "Text", "text": { "path": "/trainNumber" } },
+        { "id": "time-row", "component": "Row", "children": ["time-label", "time-value"] },
+        { "id": "time-label", "component": "Text", "text": "Time: " },
+        { "id": "time-value", "component": "Text", "text": { "path": "/departureTime" } },
+        { "id": "seat-row", "component": "Row", "children": ["seat-label", "seat-value"] },
+        { "id": "seat-label", "component": "Text", "text": "Seat: " },
+        { "id": "seat-value", "component": "Text", "text": { "path": "/seatType" } },
+
+        { "id": "passenger-card", "component": "Card", "children": ["passenger-content"] },
+        { "id": "passenger-content", "component": "Column", "children": ["passenger-header", "passenger-details"] },
+        { "id": "passenger-header", "component": "Text", "variant": "h3", "text": "Passenger Information" },
+        { "id": "passenger-details", "component": "Column", "children": ["name-row", "id-row", "phone-row"] },
+        { "id": "name-row", "component": "Row", "children": ["name-label", "name-value"] },
+        { "id": "name-label", "component": "Text", "text": "Name: " },
+        { "id": "name-value", "component": "Text", "text": { "path": "/passengerName" } },
+        { "id": "id-row", "component": "Row", "children": ["id-label", "id-value"] },
+        { "id": "id-label", "component": "Text", "text": "ID: " },
+        { "id": "id-value", "component": "Text", "text": { "path": "/passengerId" } },
+        { "id": "phone-row", "component": "Row", "children": ["phone-label", "phone-value"] },
+        { "id": "phone-label", "component": "Text", "text": "Phone: " },
+        { "id": "phone-value", "component": "Text", "text": { "path": "/phoneNumber" } },
+
+        { "id": "price-section", "component": "Row", "children": ["price-label", "price-value"] },
+        { "id": "price-label", "component": "Text", "variant": "h3", "text": "Total Price: " },
+        { "id": "price-value", "component": "Text", "variant": "h3", "text": "¥{path: /finalPrice}" },
+
+        { "id": "confirm-button", "component": "Button", "child": "confirm-button-text", "action": { "event": { "name": "confirm_booking", "context": { "trainId": { "path": "/trainId" }, "seatType": { "path": "/seatType" }, "passengerName": { "path": "/passengerName" }, "passengerId": { "path": "/passengerId" }, "phoneNumber": { "path": "/phoneNumber" } } } } },
+        { "id": "confirm-button-text", "component": "Text", "text": "Confirm Booking" }
+      ]
+    }
+  }
+]

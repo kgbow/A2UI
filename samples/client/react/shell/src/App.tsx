@@ -22,7 +22,7 @@ import {
 } from '@a2ui/react';
 import type { Types } from '@a2ui/react';
 import { A2UIClient } from './client';
-import { AppConfig, restaurantConfig } from './configs';
+import { AppConfig, restaurantConfig, trainTicketConfig } from './configs';
 import {
   createRestaurantListMessages,
   createBookingFormMessages,
@@ -34,6 +34,7 @@ import './App.css';
 // Available app configs
 const configs: Record<string, AppConfig> = {
   restaurant: restaurantConfig,
+  'train-ticket': trainTicketConfig,
 };
 
 // Check if mock mode is enabled via URL parameter
