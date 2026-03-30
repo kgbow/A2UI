@@ -1,0 +1,14 @@
+{
+  "name": "opencode-vue-chat-panel",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "dev:web": "npm run dev --workspace @demo/web",
+    "dev:adapter": "npm run dev --workspace @demo/adapter"
+  }
+}
