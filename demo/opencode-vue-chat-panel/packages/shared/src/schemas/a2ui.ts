@@ -51,7 +51,7 @@ export const a2uiUpdateDataModelSchema = z.object({
   }),
 });
 
-export const a2uiServerMessageSchema = z.discriminatedUnion("version", [
+export const a2uiServerMessageSchema = z.union([
   a2uiCreateSurfaceSchema,
   a2uiUpdateComponentsSchema,
   a2uiUpdateDataModelSchema,
