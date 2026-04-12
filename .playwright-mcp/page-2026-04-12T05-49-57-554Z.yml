@@ -1,0 +1,34 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "A2UI Vue Renderer Demo" [level=1] [ref=e5]
+    - generic [ref=e6]: v0.9
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: "示例:"
+        - combobox [ref=e11] [cursor=pointer]:
+          - option "Hello World" [selected]
+          - option "航班状态"
+          - option "登录表单"
+          - option "咖啡订单"
+          - option "渐进式仪表盘"
+          - option "选项选择器"
+      - generic [ref=e12]: 最基本的示例 — 一个静态文本卡片
+      - textbox "在此输入 JSONL 格式的 A2UI 消息（每行一条 JSON）" [ref=e13]: "{\"version\":\"v0.9\",\"createSurface\":{\"surfaceId\":\"demo-hello\",\"catalogId\":\"https://a2ui.org/specification/v0_9/basic_catalog.json\"}} {\"version\":\"v0.9\",\"updateComponents\":{\"surfaceId\":\"demo-hello\",\"components\":[{\"id\":\"root\",\"component\":\"Card\",\"child\":\"col\"},{\"id\":\"col\",\"component\":\"Column\",\"children\":[\"title\",\"body\",\"btn-wrap\"],\"align\":\"center\"},{\"id\":\"title\",\"component\":\"Text\",\"text\":\"👋 Hello from A2UI\",\"variant\":\"h2\"},{\"id\":\"body\",\"component\":\"Text\",\"text\":\"这是一个使用 @a2ui/vue 渲染器生成的界面。\",\"variant\":\"body\"},{\"id\":\"btn-text\",\"component\":\"Text\",\"text\":\"点击我\"},{\"id\":\"btn-wrap\",\"component\":\"Button\",\"child\":\"btn-text\",\"action\":{\"event\":{\"name\":\"hello_click\",\"context\":{}}}}]}}"
+      - generic [ref=e14]:
+        - button "全量渲染" [ref=e15] [cursor=pointer]
+        - button "增量渲染" [ref=e16] [cursor=pointer]
+        - button "清空" [ref=e17] [cursor=pointer]
+    - generic [ref=e18]:
+      - generic [ref=e28]:
+        - heading "👋 Hello from A2UI" [level=2] [ref=e29]
+        - generic [ref=e30]: 这是一个使用 @a2ui/vue 渲染器生成的界面。
+        - button "点击我" [active] [ref=e31] [cursor=pointer]:
+          - generic [ref=e32]: 点击我
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - text: Action 事件
+          - generic [ref=e23]: "1"
+        - generic [ref=e33]:
+          - generic [ref=e34]: 13:49:56
+          - generic [ref=e35]: "{ \"name\": \"hello_click\", \"surfaceId\": \"demo-hello\", \"sourceComponentId\": \"btn-wrap\", \"timestamp\": \"2026-04-12T05:49:56.519Z\", \"context\": {} }"

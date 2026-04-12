@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@a2ui/web_core/v0_9": ["../web_core/src/v0_9/index.ts"],
+      "@a2ui/web_core/v0_9/basic_catalog": ["../web_core/src/v0_9/basic_catalog/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "../web_core/src/v0_9/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
